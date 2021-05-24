@@ -156,15 +156,19 @@ function change_mode() {
     $(".search").toggleClass("elements_dark_mode");
     $(".region option").toggleClass("elements_dark_mode");
     $(".moon").toggleClass("white");
+
+
     
     //cambia el modo de estilo
     if( mode == 'dark' ){
         mode = "light";
         $.cookie( "modo", "light" );
+        $(".img_cont .img").attr( "src", "icons/icons8-search-50.png");
     }
         else{ 
             mode = "dark";
             $.cookie( "modo", "dark" );
+            $(".img_cont .img").attr( "src", "icons/icons8-search-50 (1).png");
         }
 }
 
