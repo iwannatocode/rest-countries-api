@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body class="dark_mode light_mode">
+    
+    <nav class="nav elements_dark_mode elements_light_mode">
+        <div class="logo_text">Where in the world???</div>
+        <div class="mode"><span class="moon white black"></span>Dark Mode</div>
+    </nav>
+
+    <section class="search_and_filter dark_mode light_mode">
+        <div class="cont_search">
+            <input type="search" id="search" class="search elements_dark_mode elements_light_mode" placeholder="Search for a Country" >
+            <span class="img_cont"><img src="icons/icons8-search-50 (1).png" alt="err" class="img"></span>
+        </div>
+        <div class="filter">
+            <select name="region" id="region" class="region elements_dark_mode elements_light_mode" >
+                <option value="" class="default" selected hidden>Filter by Region</option>
+                <option value="all" class="elements_dark_mode elements_light_mode">All</option>
+                <option value="africa" class="elements_dark_mode elements_light_mode">África</option>
+                <option value="americas" class="elements_dark_mode elements_light_mode">América</option>
+                <option value="asia" class="elements_dark_mode elements_light_mode">Asia</option>
+                <option value="europe" class="elements_dark_mode elements_light_mode">Europe</option>
+                <option value="oceania" class="elements_dark_mode elements_light_mode">Oceania</option>
+            </select>
+        </div>
+    </section>
+    <section class="country"></section>
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/jquery.cookie.min.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script src="js/js.js"></script>
+</body>
+</html>
