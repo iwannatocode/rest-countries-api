@@ -11,7 +11,7 @@ const get_all_countries = async ()=>{
         
         //guarda los paises en div
         let div = '';
-        for( let i = 0; i < 30 ; i++){
+        for( let i = 0; i < array.length; i++ ){
 
             div += `<div class="country_card elements_dark_mode elements_light_mode" >
                             <a target="_blank" href="page.html">
