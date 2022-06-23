@@ -3,7 +3,7 @@
 const get_all_countries = async ()=>{
     try{
         //llama al api y guarda los datos
-        const res = await axios.get("https://restcountries.eu/rest/v2/all" );
+        const res = await axios.get("https://restcountries.com/v2/all" );
         const array = res.data;
         
         //borra los paises
@@ -48,7 +48,7 @@ function filter_region() {
     $(".country").html("");
 
     const region = this.value;
-    
+    console.log(region);
     //si filtra 'all' ejecutamos la funcion de default
     if( region == 'all' ) return get_all_countries();
 
@@ -56,17 +56,18 @@ function filter_region() {
     (async ()=>{
         try{
             //llama al api
-            const res = await axios.get("https://restcountries.eu/rest/v2/region/" + region );
+            const res = await axios.get("https://restcountries.com/v3.1/region/" + region );
             const array = res.data;
 
+            console.log(array);
             //guarda los paises en div
             let div = '';
             for( let i = 0; i < array.length ; i++){
 
                 div += `<div class="country_card elements_dark_mode elements_light_mode" >
                             <a target="_blank" href="page.html">
-                                <div class="cont_flag"><img class="flag" src="${array[i]['flag']}"></div>
-                                <div class="country_name">${array[i]['name']}</div>
+                                <div class="cont_flag"><img class="flag" src="${array[i]['flags']['png']}"></div>
+                                <div class="country_name">${array[i]['name']['common']}</div>
                                 <div class="stats population">Population: ${array[i]['population']}</div>
                                 <div class="stats reg">Region: ${array[i]['region']}</div>
                                 <div class="stats capital">Capital: ${array[i]['capital']}</div>
@@ -109,7 +110,7 @@ function search() {
     (async ()=>{
         try{
             //llamo al api
-            const res = await axios.get("https://restcountries.eu/rest/v2/name/" + name );
+            const res = await axios.get("https://restcountries.com/v2/name/" + name );
             const array = res.data;
             
             //guarda los paises en div
@@ -130,7 +131,7 @@ function search() {
             $(".country").append(div);
 
             //pongo a la escucha a todos los paises y guardo el selecionado
-            $("a").click(function (e) { 
+            $("a").click(function ( e) { 
                 $.cookie( "pais_selected", $(this).find( ".country_name" ).html() );
             });
 
@@ -197,7 +198,7 @@ $(".region").change( filter_region );
  
 //arreglo bug de search para q muestre en el filter 'ALL' cuando se busca un pais
 $(".search").keyup(function (e) { 
-   console.log( this.value );
+/*    console.log( this.value ); */
     if( this.value != "" ){
         $(".region").val( "all" );
     }    

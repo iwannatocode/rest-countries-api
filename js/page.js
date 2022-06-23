@@ -46,7 +46,7 @@ const pon_datos_stats = ( datos, direccion)=>{
 const pon_datos_border = async ( data, direccion )=>{
     
     for( let i=0; i< data.length; i++ ){
-        const country_name = await axios.get( "https://restcountries.eu/rest/v2/alpha/" + data[i] );
+        const country_name = await axios.get( "https://restcountries.com/v2/alpha/" + data[i] );
         if( mode == "light" )
         $( direccion ).append( `<a href= "page.html" target="_self" class=" text elements_light_mode">` + country_name.data.name  + '</a>');
             else
@@ -71,16 +71,18 @@ $(".mode").click( change_mode );
 
 //accedemos a la cookie guardada
 var pais_selected = $.cookie( "pais_selected" );
-
+console.log(pais_selected );
+/* alert(pais_selected); */
 //llamada a el pais seleccionado
-axios.get( "https://restcountries.eu/rest/v2/name/" + pais_selected )
+axios.get( "https://restcountries.com/v2/name/" + pais_selected )
 .then( (res)=>{
-
     var array = res.data[0];
     console.log( array );
+    console.log(array );
+
 
     //coloco los datos del pais seleccionado
-    $(".img_preview").attr("src", array["flag"]);
+    $(".img_preview").attr("src", array["flags"].png);
     $(".country_name_details").html(array['name']);
     $(".native_stats span").html(  array['nativeName']);
     $(".population_stats span").html(  array['population']);
@@ -90,7 +92,7 @@ axios.get( "https://restcountries.eu/rest/v2/name/" + pais_selected )
 
     //pongo los datos q tienen arrays
     pon_datos_stats( array['languages'], ".languages span" );
-    pon_datos_stats( array.currencies, ".currencies_stats span" );
+    pon_datos_stats( array.currencies, ".currencies_stats span" ); 
     pon_datos_stats( array['topLevelDomain'], ".top_stats span" );
     
     //pongo los datos de los paises border
